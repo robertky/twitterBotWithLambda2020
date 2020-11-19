@@ -1,0 +1,12 @@
+service: tweetpress
+ 
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+functions:
+  favourite:
+    handler: handler.favourite
+    events:
+      - schedule: cron(10 21 ? * * *)
+cors: false

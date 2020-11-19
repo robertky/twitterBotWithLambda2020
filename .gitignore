@@ -1,0 +1,12 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+#Twitter API codes ignored for github
+configure.js
+apikey.js
+
+package-lock.json
