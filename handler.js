@@ -22,8 +22,15 @@ var date = new Date();
 //set date to current dates
 var year=date.getFullYear();
 var month=monthFormat(date.getMonth()+1);
-var day=date.getDate();
+var day=pad(date.getDate());
 var request = require('request');
+
+function pad(num) {
+  num = num.toString();
+  if (num.length <= 1) 
+    num = "0" + num;
+  return num;
+}
 
 console.log(year+"-"+month+"-"+day);
 //API links. Nasdaq LINK is currently down and has been reported to API.
@@ -61,6 +68,8 @@ function requestFunction(website, trackerName)
         console.log(body);
         parsedData = JSON.parse(body);
         //Set the variables for the tracker data
+        console.log("DATE Searched:" + ""+year+"-"+month+"-"+day+"");
+        console.log("DATE FOUND:" + parsedData["Time Series (Daily)"].hasOwnProperty(""+year+"-"+month+"-"+day+""))
         if(parsedData["Time Series (Daily)"].hasOwnProperty(""+year+"-"+month+"-"+day+""))
         {
           var IndexOpening=(parsedData["Time Series (Daily)"][year+"-"+month+"-"+day]["1. open"]);
